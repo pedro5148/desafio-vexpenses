@@ -7,17 +7,16 @@ terraform {
   }
 
   backend "s3" {
-    # Configuração do backend para armazenar o estado no S3
     bucket = "bucket-aws-pedro5148"
     key    = "terraform-test.tfstate"
-    region = "us-west-2"
+    region = "us-east-1"
     encrypt = true
     dynamodb_table = "terraform-state-lock-dynamo"
   }
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 data "aws_ami" "debian12" {
@@ -49,7 +48,7 @@ module "vpc" {
   candidato = var.candidato
   subnet_cidr = "10.0.1.0/24"
   cidr_block = "10.0.0.0/16"
-  availability_zone = "us-west-2a"
+  availability_zone = "us-east-1a"
 }
 
 module "security" {
